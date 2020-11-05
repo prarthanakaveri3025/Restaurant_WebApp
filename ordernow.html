@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en"><div id="twoseven-scripts" data-info="Scripts added by TwoSeven extension" style="display: none !important; position: static !important; top: 0px !important; left: 0px !important; width: 0px !important; height: 0px !important;"><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" id="__tmpScript-574821854" data-added-by-two-seven="1">(function() {
+    window.twoseven = {};
+  })();</script><script type="text/javascript" id="__tmpScript-830890609" data-added-by-two-seven="1">(function() {
+    window.twoseven.waitForDOMNode = async function waitForDOMNode(e,t=document){e=e||{};const{type:n,value:o}=e;if(!n||!o)throw new Error("Must specify identifier");let s=o;switch(n){case"tag":s=o.toUpperCase()}if("check"!==n){const e=await i({type:"selector",value:s},[],t);if(e)return new Promise(t=>t(e))}async function i({type:e,value:t},n,o){let s;switch(e){case"tag":s=n.find(e=>e.tagName===t);break;case"selector":s=o.querySelector(t);break;case"check":for(const e of n){if(await t(e))return e}}return s}return new Promise((e,o)=>{const r=new MutationObserver(async o=>{for(const a of o)if("childList"===a.type){const o=Array.from(a.addedNodes),c=await i({type:n,value:s},o,t);if(c)return r.disconnect(),e(c)}});r.observe(t,{childList:!0,subtree:!0})})};
+  })();</script><script type="text/javascript" id="__tmpScript-729530571" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.reportError = function reportError(e,t,n){"string"==typeof n&&(n={message:n}),Object.assign(n,{error:{message:t.message,stack:t.stack}}),window.tsExtGetPostToParent()({name:name,tag:e,action:"report-error",json:n}),console.error(JSON.stringify(n.error))}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-895372097" data-added-by-two-seven="1">(function() {
+    
+  window.twosevenHmsToSecondsOnly = function(str) {
+      var p = str.split(':'),
+          s = 0, m = 1;
+
+      while (p.length > 0) {
+          s += m * parseInt(p.pop(), 10);
+          m *= 60;
+      }
+
+      return s;
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-268391979" data-added-by-two-seven="1">(function() {
+    window.twosevenExtLog = function twosevenExtLog(e,o,c){o||(o=e,e=void 0);let n=c||"black";if(c)switch(c){case"success":n="Green";break;case"info":n="DodgerBlue";break;case"error":n="Red";break;case"warning":n="Orange";break;default:n=c}e?console.log("%c"+e+": "+o,`color:${n}`):console.log("%c"+o,`color:${n}`)};
+  })();</script><script type="text/javascript" id="__tmpScript-824763947" data-added-by-two-seven="1">(function() {
+    
+  document.twosevenGET = function(url, callback) {
+    var xmlhttp = new XMLHttpRequest();
+
+    xmlhttp.onreadystatechange = function() {
+      if (xmlhttp.readyState == XMLHttpRequest.DONE ) {
+        if (xmlhttp.status == 200) {
+          callback(null, xmlhttp.responseText);
+        } else {
+          callback('something else other than 200 was returned', '');
+        }
+      }
+    };
+    xmlhttp.open("GET", url, true);
+    xmlhttp.send();
+  };
+;
+  })();</script><script type="text/javascript" id="__tmpScript-136651838" data-added-by-two-seven="1">(function() {
+    
+  window.triggerEvent = function(e,t,n,o=!1){let s;o?(n&&"string"!=typeof n&&(n=JSON.stringify(n)),s=n):s={data:n},window.twosevenScriptsDiv&&n&&"object"==typeof n&&(console.warn(`WARNING: Attempting to send an object via event.detail from CS->Page does not work on Firefox: ${JSON.stringify(n)}`),console.error((new Error).stack));var i=new CustomEvent(t,{bubbles:!0,composed:!0,detail:s});e.dispatchEvent(i)}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-351763447" data-added-by-two-seven="1">(function() {
+    window.twoseven.postTo = async function postTo(e,t,n=!1){let o;return t.name=t.name||name,o=n?new Promise(e=>{const n=`ack-${t.action}-${1e9*Math.random()|0}`;t.ack={event:n};window.debug&&["play","pause","currentTime"].some(e=>t.action.includes(e)),window.addEventListener("message",function t({data:o={}}){o.action===n&&(window.removeEventListener("message",t),e(o.json))})}):new Promise(e=>e()),e.postMessage(t,"*"),o};
+  })();</script><script type="text/javascript" id="__tmpScript-805056895" data-added-by-two-seven="1">(function() {
+    window.tsExtGetPostTo = function tsExtGetPostTo(){return window.twoseven&&window.twoseven.postTo||window.postTo};
+  })();</script><script type="text/javascript" id="__tmpScript-159951774" data-added-by-two-seven="1">(function() {
+    window.tsExtGetPostToParent = function tsExtGetPostToParent(){return window.twoseven&&window.twoseven.postToParent||window.postToParent};
+  })();</script><script type="text/javascript" id="__tmpScript-558958341" data-added-by-two-seven="1">(function() {
+    window.twoseven.postResponse = async function postResponse(e,t){const{source:n,data:{ack:{event:o}}}=e;window.tsExtGetPostTo()(n,{action:o,json:t})};
+  })();</script><script type="text/javascript" id="__tmpScript-853942571" data-added-by-two-seven="1">(function() {
+    window.twoseven.postToParent = async function postToParent(e,t=!1){return window.tsExtGetPostTo()(window.parent,e,t)};
+  })();</script><script type="text/javascript" id="__tmpScript-238392997" data-added-by-two-seven="1">(function() {
+    window.twoseven.postToTop = async function postToTop(e,t=!1){return window.tsExtGetPostTo()(window.top,e,t)};
+  })();</script><script type="text/javascript" id="__tmpScript-139117809" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.getFromStorage = e=>new Promise((t,n)=>{const o="get-from-storage-"+(1e9*Math.random()|0);window.addEventListener(o,e=>{window.removeEventListener(o,this);const{detail:{data:{value:n}}}=e;t(n)}),triggerEvent(window,"get-from-storage",{key:e,evt:o})})
+  window.twoseven.saveToStorage = e=>{triggerEvent(window,"save-to-storage",e)}
+;
+  })();</script><script type="text/javascript" id="__tmpScript-145626095" data-added-by-two-seven="1">(function() {
+    
+  function attachHistoryListeners(){var e=history.pushState;history.pushState=function(t,n,o){return"function"==typeof history.onpushstate&&history.onpushstate({state:t}),triggerEvent(window,"pushstate",{uri:o}),e.apply(history,arguments)};var t=history.replaceState;history.replaceState=function(e){return"function"==typeof history.onreplacestate&&history.onreplacestate({state:e}),t.apply(history,arguments)}}
+  attachHistoryListeners()
+;
+  })();</script><script type="text/javascript" id="__tmpScript-227335123" data-added-by-two-seven="1">(function() {
+    window.twoseven.once = function once(e,t,n){e.addEventListener(t,function o(s){e.removeEventListener(t,o),n(s)})};
+  })();</script><script type="text/javascript" id="__tmpScript-919661277" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.isOnTwoSevenTab = async () => {
+    const result = await window.twoseven.postTo(window, { action: 'is-on-twoseven-tab' }, true)
+    return result
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-65561503" data-added-by-two-seven="1">(function() {
+    
+  window.twoseven.isPaused = async () => {
+    const result = await window.twoseven.postTo(window, { action: 'twoseven:pause-state' }, true)
+    return result
+  }
+;
+  })();</script><script type="text/javascript" id="__tmpScript-942894582" data-added-by-two-seven="1">(function() {
+    
+      const modal = document.querySelector('.twoseven-ext-tab-media-modal')
+      const modalCloseBtn = modal.querySelector('.close')
+      function closeModal () {
+        modal.style.display = 'none'
+        const frame = document.querySelector('#twoseven-ext-tab-media-iframe').contentWindow
+        frame.postMessage({
+          __evt_name: 'modal-hide'
+        }, '*')
+      }
+      modalCloseBtn.onclick = closeModal
+
+      window.onmessage = function (e) {
+        if (e.data.__evt_name === 'modal-hide') {
+          closeModal()
+        }
+      }
+
+      window.twoseven.closeTabMediaModal = closeModal
+
+      window.onclick = function (e) {
+        if (e.target.id === 'twoseven-ext-tab-media-modal' && modal.style.display === 'block') {
+            closeModal()
+        }
+      }
+    ;
+  })();</script></div><head><script id="GTMscript" async="" src="//www.googletagmanager.com/gtm.js?id=GTM-N3NGWXS"></script>
+  <meta charset="utf-8">
+  <title>Choose ordering type</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+  <link rel="icon" type="image/x-icon" href="favicon.ico?v=2">
+<link rel="stylesheet" href="styles.b8d85e1da08ca0b71279.css"><script charset="utf-8" src="0-es2015.8dcb62d2fa22547cbd96.js"></script><script charset="utf-8" src="15-es2015.8cd023f04b7259c4d108.js"></script><link href="chrome-extension://cjdnfmjmdligcpfcekfmenlhiopehjkd/web_resources/modal/modal.css" rel="stylesheet" id="__tmpStyle"><style></style><style>.hidden[_ngcontent-serverApp-c12]{visibility:hidden}.loader-overlay[_ngcontent-serverApp-c12]{position:absolute;width:100%;z-index:500000;top:0}.loader[_ngcontent-serverApp-c12]{height:4px;width:100%;position:relative;overflow:hidden;background-color:#fff}.loader[_ngcontent-serverApp-c12]:before{display:block;position:absolute;content:"";left:-200px;width:200px;height:4px;background-color:#f47920;-webkit-animation:loading 2s linear infinite;animation:loading 2s linear infinite}@-webkit-keyframes loading{0%{left:-200px;width:30%}50%{width:30%}70%{width:70%}80%{left:50%}95%{left:120%}to{left:100%}}@keyframes loading{0%{left:-200px;width:30%}50%{width:30%}70%{width:70%}80%{left:50%}95%{left:120%}to{left:100%}}</style><style>.container__inner[_ngcontent-serverApp-c15]{min-height:100vh;position:relative;padding:30px 15px;background:#000;justify-content:center;align-items:center;background-repeat:no-repeat;background-size:cover;background-position:50%}.mode__container[_ngcontent-serverApp-c15]{width:75%}.headline__big[_ngcontent-serverApp-c15]{color:#fff;text-align:center;margin:10px auto 30px}.mode__box[_ngcontent-serverApp-c15]{margin:15px auto;font-family:FontSubHeading;height:80px;border:1.2px solid #fff;border-radius:4px;align-items:center;font-size:16px;cursor:pointer}.chat_link[_ngcontent-serverApp-c15], .mode__box[_ngcontent-serverApp-c15]{color:#fff;justify-content:center}.chat_link[_ngcontent-serverApp-c15]{position:absolute;bottom:12px;width:100%}.tracking_link[_ngcontent-serverApp-c15]   span[_ngcontent-serverApp-c15]{padding:0 5px;vertical-align:super}a[_ngcontent-serverApp-c15]{color:#fff;text-decoration:none;font-family:FontSubHeading}a[_ngcontent-serverApp-c15]:active, a[_ngcontent-serverApp-c15]:hover{color:#888}</style><style>.back[_ngcontent-serverApp-c14], .cancel[_ngcontent-serverApp-c14], .menu[_ngcontent-serverApp-c14]{height:25px;width:25px;fill:#fff;cursor:pointer}.search[_ngcontent-serverApp-c14]{height:15px;width:15px;fill:#838383;cursor:pointer}.check[_ngcontent-serverApp-c14]{height:14px;width:14px;fill:#fff;cursor:pointer}.tick[_ngcontent-serverApp-c14]{fill:#3fb722}.cross-in-cirle[_ngcontent-serverApp-c14], .tick[_ngcontent-serverApp-c14]{height:85px;width:85px}.cross-in-cirle[_ngcontent-serverApp-c14], .error[_ngcontent-serverApp-c14]{fill:#f44336}.error[_ngcontent-serverApp-c14]{height:14px;width:14px}.chat_icon[_ngcontent-serverApp-c14]{height:18px;width:15px;fill:#fff}.cancel__modal[_ngcontent-serverApp-c14]{fill:#000;cursor:pointer}.cancel__modal[_ngcontent-serverApp-c14], .egg[_ngcontent-serverApp-c14], .non-veg[_ngcontent-serverApp-c14], .veg[_ngcontent-serverApp-c14]{height:12px;width:12px}.rotate[_ngcontent-serverApp-c14]{height:30px;width:30px;fill:#000;cursor:pointer;transition:all .3s linear}.rotate_down[_ngcontent-serverApp-c14]{transform:rotate(180deg)}</style><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/42/9/common.js"></script><script type="text/javascript" charset="UTF-8" src="https://maps.googleapis.com/maps-api-v3/api/js/42/9/util.js"></script></head>
+<body><noscript id="GTMiframe"><iframe src="//www.googletagmanager.com/ns.html?id=GTM-N3NGWXS" style="width: 0px; height: 0px; display: none; visibility: hidden;"></iframe></noscript>
+  <app-root _nghost-sc19="" class="ng-tns-c19-0 ng-tns-c13-0" ng-version="9.1.12" _nghost-serverapp-c13=""><div _ngcontent-serverapp-c13="" class="container ng-tns-c13-0 ng-trigger ng-trigger-routeAnimations"><app-loader _ngcontent-serverapp-c13="" class="ng-tns-c13-0" _nghost-serverapp-c12=""><div _ngcontent-serverapp-c12="" class="hidden"><div _ngcontent-serverapp-c12="" class="loader-overlay"><!----></div></div></app-loader><router-outlet _ngcontent-serverapp-c13="" class="ng-tns-c13-0"></router-outlet><app-order-type _nghost-serverapp-c15="" class="ng-star-inserted"><div _ngcontent-serverapp-c15="" class="container__inner flex ng-star-inserted" style="background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url(&quot;https://s3-ap-southeast-1.amazonaws.com/hashtagloyalty/merchants/background_images/000/003/695/original/The_Table_Mezzanine_New.jpg?1596693183&quot;);"><div _ngcontent-serverapp-c15="" class="mode__container"><div _ngcontent-serverapp-c15="" class="headline__big"> Welcome to The Table! </div><div _ngcontent-serverapp-c15="" class="mode__box flex ng-star-inserted"> I'll pickup my order </div><div _ngcontent-serverapp-c15="" class="mode__box flex ng-star-inserted"> I want a delivery </div><div _ngcontent-serverapp-c15="" class="mode__box flex ng-star-inserted"> View visual menu </div><!----></div></div><!----><div _ngcontent-serverapp-c15="" class="chat_link flex"><a _ngcontent-serverapp-c15="" target="_blank" href="https://bit.ly/3ftN0yg" class="tracking_link"><span _ngcontent-serverapp-c15="">Ordering</span><app-icon _ngcontent-serverapp-c15="" _nghost-serverapp-c14=""><svg _ngcontent-serverApp-c14="" class="chat_icon"><use _ngcontent-serverApp-c14="" xlink:href="../../../assets/images/icons.svg?q=123#chat_icon"></use></svg></app-icon><span _ngcontent-serverapp-c15="">Paraíso Rasoi</span></a></div></app-order-type><!----></div></app-root>
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script><div class="razorpay-container" style="z-index: 1000000000; position: fixed; top: 0px; display: none; left: 0px; height: 100%; width: 100%; backface-visibility: hidden; overflow-y: visible;"><style>@keyframes rzp-rot{to{transform: rotate(360deg);}}@-webkit-keyframes rzp-rot{to{-webkit-transform: rotate(360deg);}}</style><div class="razorpay-backdrop" style="min-height: 100%; transition: all 0.3s ease-out 0s; position: fixed; top: 0px; left: 0px; width: 100%; height: 100%;"><span style="text-decoration: none; background: rgb(214, 68, 68); border: 1px dashed white; padding: 3px; opacity: 0; transform: rotate(45deg); transition: opacity 0.3s ease-in 0s; font-family: lato, ubuntu, helvetica, sans-serif; color: white; position: absolute; width: 200px; text-align: center; right: -50px; top: 50px;">Test Mode</span></div><iframe style="opacity: 1; height: 100%; position: relative; background: none; display: block; border: 0 none transparent; margin: 0px; padding: 0px; z-index: 2;" allowtransparency="true" frameborder="0" width="100%" height="100%" allowpaymentrequest="true" src="https://api.razorpay.com/v1/checkout/public" class="razorpay-checkout-frame"></iframe></div>
+  <script async="" defer="" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyABorHvEVSy_3Mudu__xAB-vQVQCPlQq0c&amp;libraries=places"></script>
+<script src="runtime-es2015.5a8d142015fa59e7cc2f.js" type="module"></script><script src="runtime-es5.5a8d142015fa59e7cc2f.js" nomodule="" defer=""></script><script src="polyfills-es5.b94fa6b63482debf189c.js" nomodule="" defer=""></script><script src="polyfills-es2015.ec106bde51a5c74e1a9c.js" type="module"></script><script src="main-es2015.f0f351d0a569406fcad9.js" type="module"></script><script src="main-es5.f0f351d0a569406fcad9.js" nomodule="" defer=""></script>
+
+<script id="serverApp-state" type="application/json">{&q;the-table-apollo-bandar-colaba&q;:{&q;id&q;:3695,&q;name&q;:&q;The Table&q;,&q;location&q;:&q;Apollo Bandar, Colaba&q;,&q;lat&q;:&q;18.924097&q;,&q;lon&q;:&q;72.83307&q;,&q;m_type&q;:&q;spent&q;,&q;is_cashback_model&q;:false,&q;background_image&q;:&q;https://s3-ap-southeast-1.amazonaws.com/hashtagloyalty/merchants/background_images/000/003/695/original/The_Table_Mezzanine_New.jpg?1596693183&q;,&q;logo_image&q;:&q;https://s3-ap-southeast-1.amazonaws.com/hashtagloyalty/merchants/logos/000/003/695/original/The_Table.png?1603806535&q;,&q;role&q;:&q;Merchant&q;,&q;outlet_address&q;:&q;Ground Floor, Kalapesi Trust Building, Opposite Dhanraj Mahal, Below Hotel Suba Palace, Apollo Bunder Marg, Colaba, Mumbai, Maharashtra 400039, India&q;,&q;city&q;:&q;Mumbai&q;,&q;ordering_type&q;:[{&q;id&q;:&q;take_away&q;,&q;name&q;:&q;I&s;ll pickup my order&q;},{&q;id&q;:&q;delivery&q;,&q;name&q;:&q;I want a delivery&q;},{&q;id&q;:&q;dine_in&q;,&q;name&q;:&q;View visual menu&q;}],&q;is_loyalty_model&q;:false,&q;pre_order_delivery&q;:true,&q;pre_order_take_away&q;:true,&q;on_demand_delivery&q;:true,&q;on_demand_take_away&q;:true,&q;has_offers&q;:false,&q;items_include_taxes&q;:false,&q;outlet_number&q;:&q;7045111880&q;,&q;visual_menu&q;:true,&q;chain_id&q;:344,&q;chain_slug&q;:&q;food-matters-all-outlets&q;,&q;slug&q;:&q;the-table-apollo-bandar-colaba&q;}}</script><div>
+    <div id="twoseven-ext-tab-media-modal" class="twoseven-ext-tab-media-modal" style="display: none;">
+      <!-- Modal content -->
+      <div class="twoseven-ext-tab-media-modal-content">
+        <div class="iframe-container" style="height: 100%; width: 100%;">
+          <span class="close">×</span>
+        </div>
+      </div>
+    </div></div></body></html>
